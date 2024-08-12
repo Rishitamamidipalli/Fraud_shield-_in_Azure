@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Shield</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fraud Shield</h1>
+        <p>Provide your credit card details and check if your transaction is fraudulent or not.</p>
+
+        <form method="POST">
+            <input type="number" name="v1" placeholder="Enter PCA component V1" step="any" required>
+            <input type="number" name="v2" placeholder="Enter PCA component V2" step="any" required>
+            <input type="number" name="v3" placeholder="Enter PCA component V3" step="any" required>
+            <input type="number" name="amount" placeholder="Enter Transaction Amount in $" step="any" required>
+            <button type="submit">CHECK</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result {% if prediction == 'Fraud' %}error{% else %}success{% endif %}">
+                {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
